@@ -1,3 +1,18 @@
+/* Design System */
+:root {
+
+	/* Colors */
+	--white: #FFF;
+	--black: #000;
+	--very-dark-cyan: #1D6154;
+	--dark-moderate-orange: #B1663C;
+	--very-dark-gray: #3d3d3d;
+	--very-dark-mostly-black-cyan: #0E2F28;
+	--very-pale-mostly-white-yellow: #FFFEF8;
+}
+
+/* *************************************************************** */
+
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -46,20 +61,15 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-/** end reset css**/
+/* *********************************************************************** */
+/*                          GENERAL STYLE                                 */
+/* ********************************************************************** */
 body {
 	max-width: 1140px;
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
-}
-header {
-	display: flex;
-	justify-content: space-between;
-	margin: 50px 0
-}
-section {
-	margin: 50px 0
+	background-color: var(--very-pale-mostly-white-yellow);
 }
 
 h1{
@@ -68,43 +78,68 @@ h1{
 	font-family: 'Syne';
 	font-size: 22px;
 	font-weight: 800;
-	color: #B1663C
+	color: var(--dark-moderate-orange);
 }
 
 h1 > span {
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
-;
 }
 
 h2{
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
-	color: #1D6154
+	color: var(--very-dark-cyan) ;
 }
+
+p {
+	color: var(--very-dark-gray);
+}
+
+section {
+	margin: 85px 0 ;
+}
+
+/* ********************************************************** */
+/*                        HEADER                              */
+/* ********************************************************** */
+header {
+	display: flex;
+	justify-content: space-between;
+	margin: 50px 0 ;
+}
+
 nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
 
 }
+
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+	cursor: pointer;
 }
 
 li:hover {
-	color: #B1663C;
+	color: var(--dark-moderate-orange);
 }
+
+/* *********************************************************** */
+/*                            INTRODUCTION                    */
+/* ************************************************************ */
 #introduction {
 	display: flex;
 	align-items: center;
 }
+
 #introduction figure {
 	flex: 1
 }
+
 #introduction img {
 	display: block;
 	margin: auto;
@@ -114,6 +149,7 @@ li:hover {
 #introduction article {
 	flex: 1
 }
+
 #introduction h2 {
 	margin-bottom: 1em;
 }
@@ -121,10 +157,52 @@ li:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
+
+
+/* *********************************************************** */
+/*                            PORTFOLIO                        */
+/* ************************************************************ */
+
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
 }
+
+.filtersgroup {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;	
+
+	margin-top: 51px;
+	margin-bottom: 51px;
+}
+
+.btn-categories {
+	color: var(--very-dark-cyan);
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 16px;
+	text-align: center;	
+	cursor: pointer;
+
+	background-color: var(--white);
+	border: 1px solid var(--very-dark-cyan);
+	border-radius: 60px;
+	padding: 9px 25px ;
+	transition: all 400ms ease-in-out;
+}
+
+.btn-categories:hover {
+	color: var(--white);
+	background-color: var(--very-dark-cyan);
+}
+
+.btn-categories--active {
+	color: var(--white);
+	background-color: var(--very-dark-cyan);
+}
+
 .gallery {
 	width: 100%;
 	display: grid;
@@ -135,19 +213,29 @@ li:hover {
 
 .gallery img {
 	width: 100%;
-
 }
+
+.gallery figcaption {
+	color: var(--very-dark-gray);	
+}
+
+/* *********************************************************** */
+/*                            CONTACT                          */
+/* ************************************************************ */
+
 #contact {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
+
 #contact > * {
 	text-align: center;
-
 }
+
 #contact h2{
 	margin-bottom: 20px;
 }
+
 #contact form {
 	text-align: left;
 	margin-top:30px;
@@ -161,9 +249,12 @@ margin: auto;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+
 #contact label {
 	margin: 2em 0 1em 0;
+	color: var(--very-dark-gray);
 }
+
 #contact textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
@@ -173,12 +264,16 @@ input[type="submit"]{
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
-	background-color: #1D6154;
+	background-color: var(--very-dark-cyan);
 	margin : 2em auto ;
 	width: 180px;
 	text-align: center;
 	border-radius: 60px ;
 }
+
+/* *********************************************************** */
+/*                            FOOTER                           */
+/* ************************************************************ */
 
 footer nav ul {
 	display: flex;

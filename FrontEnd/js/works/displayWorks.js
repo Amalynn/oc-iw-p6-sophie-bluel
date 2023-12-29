@@ -1,26 +1,22 @@
-import { getData } from "../api/getData.js";
-
 /**
- * 
- * 
- * 
+ * This function display the architect's works
+ * It takes two parameters : an array of works and the CSS selector for the parent node   
+ * @param {Array} listWorks An array of objects to display
+ * @param {string} parentNodeCSS The CSS selector of the parent element to link the works
  */
-export async function displayWorks() {
-    const works = await getData("works") ;
-    
-    let galleryHtml = "";
+export function displayWorks(listWorks, parentNodeCSS) {    
+    let html = "";
+    const parentNodeElement = document.querySelector(`${parentNodeCSS}`);
 
-    for (let i= 0; i < works.length; i++) {
+    for (let i= 0; i < listWorks.length; i++) {
         
-        let figureElementHtml = `<figure>
-				                    <img src=${works[i].imageUrl} alt=${works[i].title}>
-				                    <figcaption>${works[i].title}</figcaption>
+        let figureElementHtml = `<figure data-workCategoryId="${listWorks[i].categoryId}">
+				                    <img src=${listWorks[i].imageUrl} alt=${listWorks[i].title}>
+				                    <figcaption>${listWorks[i].title}</figcaption>
 			                    </figure> `
 
-        galleryHtml += figureElementHtml ;
+        html += figureElementHtml ;
     }
 
-    const galleryDivHtml = document.querySelector("#portfolio .gallery");
-    galleryDivHtml.innerHTML = galleryHtml ;    
-
+    parentNodeElement.innerHTML = html ;    
 }
