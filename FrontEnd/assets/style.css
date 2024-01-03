@@ -9,6 +9,10 @@
 	--very-dark-gray: #3d3d3d;
 	--very-dark-mostly-black-cyan: #0E2F28;
 	--very-pale-mostly-white-yellow: #FFFEF8;
+
+	--light-grayish-red: #F8D7DA;
+	--bright-red: #DC3545;
+	--very-soft-red: #F1AEB5;
 }
 
 /* *************************************************************** */
@@ -64,12 +68,15 @@ table {
 /* *********************************************************************** */
 /*                          GENERAL STYLE                                 */
 /* ********************************************************************** */
-body {
-	max-width: 1140px;
-	margin:auto;
+body {	
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 	background-color: var(--very-pale-mostly-white-yellow);
+}
+
+.wrapper {
+	max-width: 1140px;
+	margin:auto;
 }
 
 h1{
@@ -111,6 +118,8 @@ a {
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
+	max-width: 1140px;
+	margin: auto;
 }
 
 /* ********************************************************** */
@@ -367,10 +376,56 @@ button[type="submit"]:hover {
 #login a:hover {
 	color: var(--dark-moderate-orange);
 }
+
+.error {
+	color: var(--bright-red);
+	background-color: var(--light-grayish-red) ;
+	border: 2px solid var(--very-soft-red);
+	font-weight: 700;
+	padding: 12px;
+	margin-bottom: 30px;
+	border-radius: 5px;
+}
+
+/* *********************************************************** */
+/*                           EDITION                           */
+/* ************************************************************ */
+.editing-banner {
+	height: 59px;
+	background-color: var(--black);
+	color: var(--white);
+	font-size: 16px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	font-weight: 400;
+}
+
+.btn-editing-projects {
+	color: var(--black);
+	font-size: 14px;
+	font-weight: 400;
+	font-family: 'Work Sans';
+	cursor: pointer;
+}
+
+.btn-editing-projects i {
+	font-size: 16px;
+	margin-right: 10px;
+}
+
+.editing-h2 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 31px;
+}
+
+
 /* *********************************************************** */
 /*                            FOOTER                           */
 /* ************************************************************ */
-
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
