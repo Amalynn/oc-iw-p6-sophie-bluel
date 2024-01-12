@@ -4,11 +4,12 @@
 	/* Colors */
 	--white: #FFF;
 	--black: #000;
+	--gray: #b3b3b3;
 	--very-dark-cyan: #1D6154;
 	--dark-moderate-orange: #B1663C;
 	--very-dark-gray: #3d3d3d;
 	--very-dark-mostly-black-cyan: #0E2F28;
-	--very-pale-mostly-white-yellow: #FFFEF8;
+	--very-pale-mostly-white-yellow: #FFFEF8;	
 
 	--light-grayish-red: #F8D7DA;
 	--bright-red: #DC3545;
@@ -284,6 +285,10 @@ li:hover {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
+
+/* ********************************************************** */
+/*                             BUTTON                        */
+/* ********************************************************** */
 input[type="submit"] {
 	font-family: 'Syne';
 	font-weight: 700;
@@ -299,6 +304,63 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
 	background-color: var(--very-dark-mostly-black-cyan);
+}
+
+button[type="submit"], 
+.btn {
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: var(--very-dark-cyan);	
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+	transition: background-color 350ms ease-in-out;
+	cursor: pointer;
+	border: none;
+	margin: 37px auto 37px auto;	
+	height: 36px;
+}
+
+button[type="submit"]:hover,
+.btn:hover {
+	background-color: var(--very-dark-mostly-black-cyan);
+}
+
+.modal-header-navigation button {
+	border: none;
+	background-color: transparent;	
+	cursor: pointer;
+	font-size: 24px;
+}
+
+.modal-header-navigation button:hover {
+	background-color: transparent;	
+}
+
+.btn-delete {
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin-top: 6px;
+	margin-right: 6px;
+	width: 17px;
+	height: 17px;
+	background-color: var(--black);
+
+	border-radius: 2px;
+	border: none;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	cursor: pointer;
+}
+
+.btn-delete i {
+	color: var(--white);
+	font-size: 11px;
 }
 
 /* *********************************************************** */
@@ -345,25 +407,6 @@ input[type="submit"]:hover {
 	background-color: var(--white);
 	border: none;
 	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
-}
-
-button[type="submit"] {
-	font-family: 'Syne';
-	font-weight: 700;
-	color: white;
-	background-color: var(--very-dark-cyan);	
-	width: 180px;
-	text-align: center;
-	border-radius: 60px ;
-	transition: background-color 350ms ease-in-out;
-	cursor: pointer;
-	border: none;
-	margin: 37px auto 37px auto;	
-	height: 36px;
-}
-
-button[type="submit"]:hover {
-	background-color: var(--very-dark-mostly-black-cyan);
 }
 
 #login a {
@@ -434,5 +477,91 @@ footer nav ul {
 
 .footer-login {
 	margin-top: auto;
+}
+
+/* *********************************************************** */
+/*                            MODAL                            */
+/* ************************************************************ */
+.modal {
+	display: flex;
+	align-items: center;
+	justify-content: center;	
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	background-color: rgba(0, 0, 0, 0.3) ;	
+}
+
+.hidden {
+	display: none;
+}
+
+.modal-wrapper {
+	overflow: auto;
+	background-color: var(--white);
+	border-radius: 10px ;
+	padding: 26px 30px 30px 30px;
+	width: 630px;	
+}
+
+.modal-header-navigation {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;	
+}
+
+.modal-header {
+	margin-bottom: 46px;
+}
+
+.modal-header h3 {
+	text-align: center;
+	font-size: 26px;
+	margin-top: 10px;
+}
+
+.modal-body {
+	margin: 0 auto;
+	max-width: 420px;
+}
+
+.grid-works {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-auto-rows: auto;
+	column-gap: 9px;
+	row-gap: 29px;	
+}
+
+.thumbnail-work {
+	position: relative;	
+	height: 102px;
+	width: 76px;
+}
+
+.thumbnail-work img {
+	display: block;
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+
+hr {
+	margin-top: 67px;
+	border-top: 1px solid var(--gray) ;	
+}
+
+.modal-footer {
+	margin: 38px auto 19px auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;	
+}
+
+.modal-footer button {
+	margin: 0;
 }
 
