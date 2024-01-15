@@ -8,6 +8,7 @@ import { logout } from "../auth/logout.js";
 import {openModal} from "../modal/openModal.js";
 import { closeModal } from "../modal/closeModal.js";
 import { displayWorksModal } from "../modal/displayWorksModal.js";
+import { deleteData } from "../api/deleteData.js";
 
 
 
@@ -56,9 +57,20 @@ if(!localStorage.getItem("token")) {
     displayWorksModal(works, ".grid-works");
     
     // Remove projects
-    document.querySelectorAll(".js-remove-work").forEach((thumbnail) => {
-        thumbnail.addEventListener("click", (event) => {
-            console.log(event);
+    document.querySelectorAll(".js-remove-work").forEach((btnDelete) => {
+        btnDelete.addEventListener("click", (event) => {
+            event.preventDefault() ;
+            let projectId = Number(event.target.parentNode.dataset.workId);
+            deleteData(`works/${projectId}`);
+
+
+
+            
+            
+           
+            
+            
+            
         })
     });
     

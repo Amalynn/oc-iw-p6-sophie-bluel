@@ -350,6 +350,7 @@ button[type="submit"]:hover,
 
 	border-radius: 2px;
 	border: none;
+	padding: 0;
 
 	display: flex;
 	justify-content: center;
