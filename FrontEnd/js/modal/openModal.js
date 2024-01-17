@@ -8,6 +8,5 @@ export function openModal() {
     modal.setAttribute("aria-hidden", "false")
     modal.setAttribute("aria-modal", "true")
 
-    document.body.style.overflow = "hidden";   
-    
+    document.body.style.overflow = "hidden";    
 }

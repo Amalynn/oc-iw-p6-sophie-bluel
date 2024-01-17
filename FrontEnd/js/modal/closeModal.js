@@ -1,6 +1,6 @@
 
 /**
- * This function close the modal window
+ * This function closes the modal window
  *  
  */
 export function closeModal() {

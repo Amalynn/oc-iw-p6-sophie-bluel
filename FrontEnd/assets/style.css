@@ -9,7 +9,10 @@
 	--dark-moderate-orange: #B1663C;
 	--very-dark-gray: #3d3d3d;
 	--very-dark-mostly-black-cyan: #0E2F28;
-	--very-pale-mostly-white-yellow: #FFFEF8;	
+	--very-pale-mostly-white-yellow: #FFFEF8;
+	--light-grayish-blue: #E8F1F6;
+	--light-grayish-blue-darker: #CBD6DC;
+	--dark-moderate-blue: #306685;
 
 	--light-grayish-red: #F8D7DA;
 	--bright-red: #DC3545;
@@ -30,7 +33,7 @@ del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
+fieldset, form, label, legend, select, input,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
@@ -364,6 +367,21 @@ button[type="submit"]:hover,
 	font-size: 11px;
 }
 
+.btn-upload-project-image {
+	color: var(--dark-moderate-blue);
+	background-color: var(--light-grayish-blue-darker);
+	font-weight: 500;
+	margin-top: 12px;
+	margin-bottom: 6px;
+	transition: background-color 350ms ease-in-out, color 350ms ease-in-out;
+}
+
+.btn-upload-project-image:hover {
+	color: var(--light-grayish-blue-darker);
+	background-color: var(--dark-moderate-blue);
+}
+
+
 /* *********************************************************** */
 /*                            LOGIN                           */
 /* ************************************************************ */
@@ -509,9 +527,16 @@ footer nav ul {
 }
 
 .modal-header-navigation {
-	display: flex;
-	justify-content: flex-end;
+	display: flex;	
 	align-items: center;	
+}
+
+#modal-gallery .modal-header-navigation {
+	justify-content: flex-end;
+}
+
+#modal-add-projects .modal-header-navigation {
+	justify-content: space-between;
 }
 
 .modal-header {
@@ -565,4 +590,80 @@ hr {
 .modal-footer button {
 	margin: 0;
 }
+
+.input-project-image-container {
+	background-color: var(--light-grayish-blue);
+	border-radius: 3px;	
+	padding: 20px;
+	margin-bottom: 30px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.input-project-image-container i {
+	color: var(--light-grayish-blue-darker);
+	font-size: 76px;
+}
+
+.input-project-image-container input {
+	display: none;
+}
+
+.input-project-image-container p {
+	color: var(--very-dark-gray);
+	font-size: 10px;
+}
+
+#modal-add-projects label {
+	color: var(--very-dark-gray);
+	font-weight: 500;
+	margin-bottom: 10px;	
+}
+
+#modal-add-projects select {
+	appearance: none;
+	display: block;
+	width: 100%;
+}
+
+#modal-add-projects input[type="text"],
+#modal-add-projects select {
+	border: none;
+	height: 51px;
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+	padding-left: 15px;
+	background-color: var(--white);
+}
+
+#modal-add-projects .form-group:not(:last-of-type) {
+	margin-bottom: 21px;
+}
+
+#modal-add-projects .select-wrapper {
+	position: relative;
+}
+
+#modal-add-projects .select-wrapper::after {
+	content: url("./icons/chevron-down-solid.png");
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	height: 11px;
+	width: 11px;	
+}
+
+#modal-add-projects hr {
+	margin: 47px 0 32px 0;
+}
+
+#modal-add-projects button[type="submit"] {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto 20px auto;
+}
+
 

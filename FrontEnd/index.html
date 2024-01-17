@@ -108,10 +108,45 @@
 				<hr>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn">Ajouter une photo</button>
+				<button type="button" class="btn js-add-project-button">Ajouter une photo</button>
 			</div>
 		</div>
-		
+
+		<!-- MODAL - ADD PROJECTS -->
+		<div id="modal-add-projects" class="modal-wrapper hidden">
+			<div class="modal-header">
+				<div class="modal-header-navigation">
+					<button type="button" class="js-modal-previous-window"><i class="fa-solid fa-arrow-left"></i></button>
+					<button type="button" class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>					
+				</div>				
+				<h3 id="modal-title">Ajout photo</h3>
+			</div>
+			<div class="modal-body">
+				<form action="#" method="post" id="js-form" class="form">
+					<div class="input-project-image-container">
+						<i class="fa-regular fa-image"></i>
+						<input type="file" name="inputFile" id="js-input-file" accept=".jpg, .png, .jpeg">
+						<button type="button" id="js-file-select" class="btn btn-upload-project-image">+ Ajouter photo</button>
+						<p>jpg, png : 4mo max</p>
+					</div>
+
+					<div class="form-group">
+						<label for="input-title">Titre</label>
+						<input type="text" name="inputTitle" id="input-title" required>
+					</div>
+					<div class="form-group">
+						<label for="select-categories">Categories</label>
+						<div class="select-wrapper">
+							<select name="selectCategories" id="select-categories" required>														
+							</select>
+						</div>
+					</div>
+					<hr>
+					<button type="submit" class="btn" disabled>Valider</button>
+				</form>				
+			</div>			
+		</div>
+
 	</div>
 
 <!-- Script JS -->
