@@ -6,6 +6,18 @@ import { getData } from "../api/getData.js";
 export function resetAddProjectsForm() {
     const form = document.getElementById("js-form");
     form.reset() ;
+
+    const errorMessage = document.getElementById("js-error");
+    if(errorMessage) {
+        removeErrorMessage(errorMessage);
+    }   
+}
+
+/**
+ * This function allows to remove an error message into the form. 
+ */
+export function removeErrorMessage(errorMessageElement) {
+    errorMessageElement.remove() ;
 }
 
 

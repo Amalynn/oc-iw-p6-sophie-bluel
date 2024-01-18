@@ -12,8 +12,6 @@ import { deleteData } from "../api/deleteData.js";
 import * as form from "../modal/form.js";
 
 
-
-
 if(!localStorage.getItem("token")) {  
     
     // Display all works
@@ -106,7 +104,9 @@ if(!localStorage.getItem("token")) {
     })
 
     //Form - Add Projects
-    
+
+    form.createCategoriesOptionsForm() ;
+
         // Masquer l'élément <input>
     const fileSelectButton = document.getElementById("js-file-select");
     const inputFileElement = document.getElementById("js-input-file");
@@ -115,9 +115,30 @@ if(!localStorage.getItem("token")) {
         if(inputFileElement) {
             inputFileElement.click() ;
         }
-    });
+    });    
 
-    form.createCategoriesOptionsForm() ;
+    inputFileElement.addEventListener("change", (event) => {
+        let file = event.target.files[0];
+        const fileSizeMaxOctets = 4194304 ;
+
+        if(file.size > fileSizeMaxOctets) {
+            const parentNode = document.getElementById("js-form");
+            const nextSibling = document.querySelector(".input-project-image-container");
+            let paragrapheElement = document.createElement("p");
+
+            paragrapheElement.innerHTML = `La taille de l'image <strong>${file.name}</strong> dépasse la limite autorisée de 4Mo.</p>`;
+            paragrapheElement.classList.add("error");
+            paragrapheElement.id = "js-error";
+            parentNode.insertBefore(paragrapheElement, nextSibling);
+            
+        } else {
+            const errorMessage = document.querySelector(".error");
+            form.removeErrorMessage(errorMessage); 
+            console.log("Fichier OK !");          
+
+        }
+    })
+    
     
 }
 
