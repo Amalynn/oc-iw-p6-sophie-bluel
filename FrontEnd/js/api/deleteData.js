@@ -1,13 +1,13 @@
 /**
- * This function returns the data in json format from the api with the GET method
- * @param {String} endpoint The URI of the ressource 
+ * This function returns the response in json format from the api call with the DELETE method
+ * @param {String} endpoint The URI of the ressource to delete.
  * @returns {Array} The data in json format from the API call
  */
 export async function deleteData(endpoint) {
 
     let userToken = localStorage.token;
     try {
-       const response = await fetch(`http://localhost:5678/api/${endpoint}`, {
+       const response = await fetch(`http://localhost:5678/api${endpoint}`, {
             method: "DELETE",    
             headers: {
                 "Authorization": `Bearer ${userToken}`,
@@ -15,8 +15,9 @@ export async function deleteData(endpoint) {
        }) ;
        if (response.ok) {
             console.log(response.status) ;
+            return response;           
        }
-       throw new Error(`Failed to access data. Error: ${response.status}. Check api URL.`)
+       throw new Error(`Failed to delete data. Error: ${response.status}.`)
        
     } catch (error) {
         console.error(error.message);

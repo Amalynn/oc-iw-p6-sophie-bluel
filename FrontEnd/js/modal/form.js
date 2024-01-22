@@ -10,8 +10,11 @@ export function resetAddProjectsForm() {
     const errorMessage = document.getElementById("js-error");
     if(errorMessage) {
         removeErrorMessage(errorMessage);
-    }   
+    }    
+    
+    resetPreviewProjectImageContainer();
 }
+
 
 /**
  * This function allows to remove an error message into the form. 
@@ -22,10 +25,29 @@ export function removeErrorMessage(errorMessageElement) {
 
 
 /**
+ * This function resets the settings to add an image.
+ * 
+ */
+function resetPreviewProjectImageContainer() {
+    const previewProjectImage = document.querySelector(".previewProjectImage");
+    if(previewProjectImage) {
+        previewProjectImage.remove();
+    }
+    
+    const previewProjectImageContainer = document.querySelector(".input-project-image-container");
+    const previewProjectImageContainerChildren = previewProjectImageContainer.children ;
+                    
+    for(let i = 0; i < previewProjectImageContainerChildren.length; i++) {
+        previewProjectImageContainerChildren[i].classList.remove("hidden");
+    }
+}
+
+
+/**
  * This function allows to create dynamically the projects' categories for the <select> HTML tag. 
  */
 export async function createCategoriesOptionsForm() {
-    const categories = await getData("categories");
+    const categories = await getData("/categories");
     const parentNode = document.getElementById("select-categories");
 
     let categoriesOptionsSelect = `<option value=""> </option>` ;

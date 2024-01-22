@@ -5,7 +5,7 @@
  */
 export async function getData(endpoint) {
     try {
-       const response = await fetch(`http://localhost:5678/api/${endpoint}`, {
+       const response = await fetch(`http://localhost:5678/api${endpoint}`, {
             headers: {
                 "Accept": "application/json"
             }
@@ -15,6 +15,6 @@ export async function getData(endpoint) {
        }
        throw new Error(`Failed to access data. Error: ${response.status}. Check api URL.`)
     } catch (error) {
-        console.error(error.message);
+        console.error(error.message); 
     }
 }

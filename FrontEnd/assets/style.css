@@ -126,6 +126,12 @@ a {
 	margin: auto;
 }
 
+input[type="text"], 
+input[type="email"],
+input[type="password"] {
+	padding-left: 15px;
+}
+
 /* ********************************************************** */
 /*                        HEADER                              */
 /* ********************************************************** */
@@ -381,6 +387,10 @@ button[type="submit"]:hover,
 	background-color: var(--dark-moderate-blue);
 }
 
+#btnValidateNewProject:disabled {
+	background-color: var(--gray);
+	cursor: not-allowed;
+}
 
 /* *********************************************************** */
 /*                            LOGIN                           */
@@ -495,14 +505,14 @@ footer nav ul {
 	color: var(--bright-red);
 	background-color: var(--light-grayish-red) ;
 	border: 2px solid var(--very-soft-red);
-	font-weight: 700;
+	font-weight: 500;
 	padding: 12px;
 	margin-bottom: 30px;
 	border-radius: 5px;
 }
 
 .error strong {
-	font-style: italic;
+	font-weight: 700;
 }
 
 /* *********************************************************** */
@@ -601,8 +611,8 @@ hr {
 .input-project-image-container {
 	background-color: var(--light-grayish-blue);
 	border-radius: 3px;	
-	padding: 20px;
 	margin-bottom: 30px;
+	height: 170px;
 
 	display: flex;
 	flex-direction: column;
@@ -614,6 +624,13 @@ hr {
 	color: var(--light-grayish-blue-darker);
 	font-size: 76px;
 }
+
+.input-project-image-container .previewProjectImage {
+	height: auto;
+	width: 129px;
+	overflow: hidden;
+}
+
 
 .input-project-image-container input {
 	display: none;
