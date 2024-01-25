@@ -13,9 +13,8 @@ export async function deleteData(endpoint) {
                 "Authorization": `Bearer ${userToken}`,
             }
        }) ;
-       if (response.ok) {
-            console.log(response.status) ;
-            return response;           
+       if (response.ok) {            
+            return response.status;           
        }
        throw new Error(`Failed to delete data. Error: ${response.status}.`)
        

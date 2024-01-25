@@ -5,9 +5,8 @@ import { displayWorks } from "../works/displayWorks.js";
 import { displayCategories } from "../categories/displayCategories.js";
 import { createEditingSession } from "../edition/createEditingSession.js";
 import { logout } from "../auth/logout.js";
-import {openModal} from "../modal/openModal.js";
-import { closeModal } from "../modal/closeModal.js";
-import { displayWorksModal } from "../modal/displayWorksModal.js";
+import * as modal from "../modal/modal.js";
+
 import { deleteData } from "../api/deleteData.js";
 import * as form from "../modal/form.js";
 
@@ -30,59 +29,78 @@ if (!userIsConnected) {
     logout();
 }
 
-//const buttonEditingProjects = document.querySelector(".btn-editing-projects");
-//console.log(buttonEditingProjects);
+/* *********************************************************** */
+/* *********************************************************** */
+
+// Opening and closing modals
+const buttonEditingProjects = document.querySelector(".btn-editing-projects");
+const buttonAddProject = document.querySelector(".js-add-project-button");
+const buttonsCloseModal = document.querySelectorAll(".js-modal-close");
+const buttonBackToGalleryModal = document.querySelector(".js-modal-previous-window");
+
+const modalBackground = document.querySelector(".modal");
+const modalGallery = document.getElementById("modal-gallery");
+const modalAddProject = document.getElementById("modal-add-projects");    
 
 
+if(buttonEditingProjects) {
+    buttonEditingProjects.addEventListener("click", (event) => {
+        event.preventDefault();        
+        modal.openModal();
+    })
+}
 
+if(buttonsCloseModal) {
+    buttonsCloseModal.forEach((closeButton) => {
+        closeButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            form.resetAddProjectsForm();
+            modal.closeModal() ;
+            if(modalGallery.classList.contains("hidden")) {
+                modalGallery.classList.remove("hidden");
+                modalAddProject.classList.add("hidden");
+            }
+        });
+    });
+}
 
-// } else {
+if(modalBackground) {    
+    modalBackground.addEventListener("click", (event) => {
+        if (event.target === modalBackground) {            
+            form.resetAddProjectsForm();
+            modal.closeModal() ;
+            if(modalGallery.classList.contains("hidden")) {
+                modalGallery.classList.remove("hidden");
+                modalAddProject.classList.add("hidden");
+            }
+        }        
+    });
+}
 
-//     
+if(buttonBackToGalleryModal) {
+    buttonBackToGalleryModal.addEventListener("click", () => {
+        modalAddProject.classList.toggle("hidden");
+        modalGallery.classList.toggle("hidden");
+        form.resetAddProjectsForm();        
+    })
+}
 
-//     // Opening and closing modals
-//     const backToGalleryModal = document.querySelector(".js-modal-previous-window");
-//     const modalGallery = document.getElementById("modal-gallery");
-//     const modalAddProject = document.getElementById("modal-add-projects");    
-//     const modalCloseButtons = document.querySelectorAll(".js-modal-close");
-//     const buttonEditingProjects = document.querySelector(".btn-editing-projects");
-    
-//     buttonEditingProjects.addEventListener("click", openModal) ;       
-    
-//     modalCloseButtons.forEach((closeButton) => {
-//         closeButton.addEventListener("click", () => {
-//             form.resetAddProjectsForm();
-//             closeModal() ;
-//             if(modalGallery.classList.contains("hidden")) {
-//                 modalGallery.classList.remove("hidden");
-//                 modalAddProject.classList.add("hidden");
-//             }
-//         });
-//     });    
-
-//     const modal = document.querySelector(".modal") ;
-//     modal.addEventListener("click", (event) => {
-//         if (event.target === modal) {            
-//             form.resetAddProjectsForm();
-//             closeModal() ;
-//             if(modalGallery.classList.contains("hidden")) {
-//                 modalGallery.classList.remove("hidden");
-//                 modalAddProject.classList.add("hidden");
-//             }
-//         }        
-//     });
-
-//     backToGalleryModal.addEventListener("click", () => {
-//         modalAddProject.classList.toggle("hidden");
-//         modalGallery.classList.toggle("hidden");
-//         form.resetAddProjectsForm();
+if(buttonAddProject) {
+    buttonAddProject.addEventListener("click", () => {
+        const modalGallery = document.getElementById("modal-gallery");
+        const modalAddProject = document.getElementById("modal-add-projects");
         
-//     })
+        modalGallery.classList.toggle("hidden");
+        modalAddProject.classList.toggle("hidden");
+    })
+}    
 
-//     // Display thumbnails of works into the modal
-//     displayWorksModal(".grid-works");
-    
-//     // Remove projects  
+/* ************************************************************* */
+/* ************************************************************* */
+// Remove projects
+
+
+ 
 
 //     window.onload = (event) => {
 //         const btnDeleteProjectsList = document.querySelectorAll(".btn-delete");
@@ -107,16 +125,7 @@ if (!userIsConnected) {
 //         //})
 //     //});
 
-//     // Toggle between modal windows
-//     const buttonAddProject = document.querySelector(".js-add-project-button");
-    
-//     buttonAddProject.addEventListener("click", () => {
-//         const modalGallery = document.getElementById("modal-gallery");
-//         const modalAddProject = document.getElementById("modal-add-projects");
-        
-//         modalGallery.classList.toggle("hidden");
-//         modalAddProject.classList.toggle("hidden");
-//     })
+
 
 //     //Form - Add Projects
 

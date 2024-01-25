@@ -17,6 +17,10 @@
 	--light-grayish-red: #F8D7DA;
 	--bright-red: #DC3545;
 	--very-soft-red: #F1AEB5;
+
+	--dark-cyan-lime-green: #198754;
+	--light-grayish-cyan-lime-green: #D1E7DD;
+	--grayish-cyan-lime-green: #A3CFBB;
 }
 
 /* *************************************************************** */
@@ -501,17 +505,36 @@ footer nav ul {
 /* *********************************************************** */
 /*                 ERROR AND SUCCESS MESSAGES                 */
 /* ************************************************************ */
-.error {
-	color: var(--bright-red);
-	background-color: var(--light-grayish-red) ;
-	border: 2px solid var(--very-soft-red);
+.message-info {
 	font-weight: 500;
 	padding: 12px;
 	margin-bottom: 30px;
 	border-radius: 5px;
 }
 
-.error strong {
+.error {
+	color: var(--bright-red);
+	background-color: var(--light-grayish-red) ;
+	border: 2px solid var(--very-soft-red);	
+}
+
+.succes {
+	color: var(--dark-cyan-lime-green);
+	background-color: var(--light-grayish-cyan-lime-green) ;
+	border: 2px solid var(--grayish-cyan-lime-green);	
+}
+
+.information {
+	text-align: center;
+	font-family: "Syne";
+	font-size: 20px;
+	color: var(--dark-moderate-blue);
+	font-weight: 700;
+	border-radius: 0;
+}
+
+.error strong,
+.success strong {
 	font-weight: 700;
 }
 

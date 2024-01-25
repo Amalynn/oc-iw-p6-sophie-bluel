@@ -1,6 +1,7 @@
 import { displayWorks } from "../works/displayWorks.js";
 import { resetElements } from "../works/resetElements.js";
 import { getData } from "../api/getData.js";
+import { showInformationMessage, removeInformationMessage } from "../works/informationMessage.js";
 
 /**
  * This function display the filtered projects according to the categories' id.
@@ -15,20 +16,39 @@ export async function filterCategories() {
         button.addEventListener("click", (event) => {           
 
             listButtonsCategories.forEach( (button) => button.classList.remove("btn-categories--active"));
+            
             event.target.classList.add("btn-categories--active");            
             
             let categoryId = Number(event.target.dataset.categoryid) ;
                         
-            if (categoryId === 0) {                
-                resetElements("#portfolio .gallery");
-                displayWorks(works,"#portfolio .gallery");
+            if (categoryId === 0) {
+                
+                if(works.length > 0) {
+                    removeInformationMessage();
+                    resetElements("#portfolio .gallery");
+                    displayWorks(works,"#portfolio .gallery");
+
+                } else {
+                    resetElements("#portfolio .gallery");
+                    showInformationMessage(); 
+                }
+                
 
             } else {
                 let worksFilterByCategory = works.filter((work) => {
                     return work.categoryId === categoryId ;
                 });
-                resetElements("#portfolio .gallery");
-                displayWorks(worksFilterByCategory, "#portfolio .gallery" );
+
+                if(worksFilterByCategory.length > 0) {
+                    removeInformationMessage();
+                    resetElements("#portfolio .gallery");
+                    displayWorks(worksFilterByCategory, "#portfolio .gallery" );
+
+                } else {
+                    resetElements("#portfolio .gallery");
+                    showInformationMessage();
+                }
+                
             }           
         })
     })

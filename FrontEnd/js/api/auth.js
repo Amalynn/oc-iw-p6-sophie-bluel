@@ -30,7 +30,7 @@ export async function auth(endpoint, credentialsData) {
 
         let paragrapheElement = document.createElement("p");
         paragrapheElement.textContent = error.message ;
-        paragrapheElement.classList.add("error");
+        paragrapheElement.classList.add("message-info", "error");
         parentNode.insertBefore(paragrapheElement, nextSibling);        
     }
 }
