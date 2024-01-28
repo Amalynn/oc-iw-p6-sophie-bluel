@@ -396,6 +396,12 @@ button[type="submit"]:hover,
 	cursor: not-allowed;
 }
 
+#btnValidateNewProject:enabled {
+	background-color: var(--very-dark-cyan);
+	cursor: pointer;
+}
+
+
 /* *********************************************************** */
 /*                            LOGIN                           */
 /* ************************************************************ */

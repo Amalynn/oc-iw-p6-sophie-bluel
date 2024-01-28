@@ -5,8 +5,10 @@ import { getData } from "../api/getData.js";
  */
 export function resetAddProjectsForm() {
     const form = document.getElementById("js-form");    
-    form.reset() ;
+    const btnValidateNewProject = document.getElementById("btnValidateNewProject");
     
+    form.reset() ;
+    btnValidateNewProject.disabled = true ;    
 
     const errorMessage = document.getElementById("js-error");
     if(errorMessage) {
@@ -64,27 +66,25 @@ export async function createCategoriesOptionsForm() {
 
 
 /**
- * 
- */
-export function activateSubmitButtonFom () {
-    const submitButtonForm = document.getElementById("btnValidateNewProject");
+ * Activate the validate new project button 
+ */ 
+export function activateBtnValidateNewProject() {
+    const projectImage = document.querySelector(".previewProjectImage"); 
+    const inputProjectTitle = document.getElementById("input-title");
+    const selectCategories = document.getElementById("select-categories");
+    const btnValidateNewProject = document.getElementById("btnValidateNewProject");
 
-    if(submitButtonForm.hasAttribute("disabled")) {
-        submitButtonForm.removeAttribute("disabled") ;
+    if(projectImage && inputProjectTitle.value.length > 1 && selectCategories !== "") {
+        btnValidateNewProject.disabled = false;
+    } else {
+        btnValidateNewProject.disabled = true;
     }
 }
 
-/**
- * 
- * 
- */
-export function desactivateSubmitButtonFom () {
-    const submitButtonForm = document.getElementById("btnValidateNewProject");
 
-    if(!submitButtonForm.hasAttribute("disabled")) {
-        submitButtonForm.setAttribute("disabled") ;
-    }
-}
+
+
+
 
 /**
  * 

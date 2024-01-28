@@ -10,6 +10,7 @@ import * as form from "../modal/form.js";
 import { postData } from "../api/postData.js";
 import { resetElements } from "../works/resetElements.js";
 import { showSuccessErrorMessage } from "../works/showSuccessErrorMessage.js";
+import { displayWorksModal } from "../works/displayWorksModal.js";
 
 /* ************************************************************ */
 /* ************************************************************ */
@@ -82,7 +83,10 @@ if(buttonBackToGalleryModal) {
     buttonBackToGalleryModal.addEventListener("click", () => {
         modalAddProject.classList.toggle("hidden");
         modalGallery.classList.toggle("hidden");
-        form.resetAddProjectsForm();        
+        form.resetAddProjectsForm(); 
+
+        resetElements("#modal-gallery .grid-works");
+        displayWorksModal("#modal-gallery .grid-works");       
     })
 }
 
@@ -192,15 +196,20 @@ inputFileElement.addEventListener("change", (event) => {
 //     console.log(newProject);
 // })
 
+// Activate the validate new project button
+const inputTitle = document.getElementById("input-title");
+const selectCategories = document.getElementById("select-categories");
 
+inputFileElement.addEventListener("change", form.activateBtnValidateNewProject);
+inputTitle.addEventListener("input", form.activateBtnValidateNewProject);
+selectCategories.addEventListener("change", form.activateBtnValidateNewProject);
 
 
 const formSubmit = document.getElementById("js-form");
 
 formSubmit.addEventListener("submit", async (event) => {
     event.preventDefault();
-
-    const projectImage = document.querySelector(".previewProjectImage");    
+       
     const projectTitle = document.getElementById("input-title").value ;
     const projectCategory = parseInt((document.getElementById("select-categories").value));
 
@@ -225,6 +234,8 @@ formSubmit.addEventListener("submit", async (event) => {
         
         resetElements("#portfolio .gallery");
         displayWorks(works, "#portfolio .gallery");
+
+        form.resetAddProjectsForm();
 
         setTimeout(() => {
             const messageInfo = document.querySelector(".message-info");
