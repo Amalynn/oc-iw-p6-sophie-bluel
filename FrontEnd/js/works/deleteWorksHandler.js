@@ -2,7 +2,7 @@ import { deleteData } from "../api/deleteData.js";
 import { getData } from "../api/getData.js";
 import { displayWorks } from "./displayWorks.js";
 import { resetElements } from "./resetElements.js";
-import { showSuccessMessage } from "./showSuccessMessage.js";
+import { showSuccessErrorMessage } from "./showSuccessErrorMessage.js";
 
 
 /**
@@ -23,7 +23,8 @@ export function deleteWorksHandler() {
                 const works = await getData("/works");
 
                 parentNode.remove();
-                showSuccessMessage();
+                const message = '<p class="message-info succes">Le projet a bien été supprimé.</p>'
+                showSuccessErrorMessage(message, "#modal-gallery .modal-body");
 
                 resetElements("#portfolio .gallery");                
                 displayWorks(works, "#portfolio .gallery");
@@ -34,7 +35,8 @@ export function deleteWorksHandler() {
                 }, 3000);
 
             } else {
-                showErrorMessage();
+                const message = '<p class="message-info error">Une erreur s\'est produite lors de la suppression du projet. Veuillez rééssayer</p>';
+                showSuccessErrorMessage(message, "#modal-gallery .modal-body" );
 
                 setTimeout(() => {
                     const messageInfo = document.querySelector(".message-info");
