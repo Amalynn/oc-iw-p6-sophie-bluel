@@ -1,7 +1,11 @@
 import { getData } from "../api/getData.js";
+import { postData } from "../api/postData.js";
+import { displayWorks } from "../works/displayWorks.js";
+import { showSuccessErrorMessage } from "../works/showSuccessErrorMessage.js";
+import { resetElements } from "../works/resetElements.js";
 
 /**
- * This function allows to reset form data . * 
+ * This function allows to reset form data . 
  */
 export function resetAddProjectsForm() {
     const form = document.getElementById("js-form");    
@@ -21,6 +25,7 @@ export function resetAddProjectsForm() {
 
 /**
  * This function allows to remove an error message into the form. 
+ * @param {object} errorMessageElement The element HTML to remove
  */
 export function removeErrorMessage(errorMessageElement) {
     errorMessageElement.remove() ;
@@ -51,9 +56,24 @@ function resetPreviewProjectImageContainer() {
  */
 export async function createCategoriesOptionsForm() {
     const categories = await getData("/categories");
-    const parentNode = document.getElementById("select-categories");
+    const parentNode = document.querySelector(".js-categories-element-parent");
 
-    let categoriesOptionsSelect = `<option value=""> </option>` ;
+    const labelSelectElement = document.createElement("label");
+    labelSelectElement.setAttribute("for", "select-categories");
+    labelSelectElement.textContent = "Categories";
+    parentNode.appendChild(labelSelectElement);
+    
+    const selectWrapperElement = document.createElement("div");
+    selectWrapperElement.className = "select-wrapper";
+    parentNode.appendChild(selectWrapperElement);
+
+    const selectElement = document.createElement("select");
+    selectElement.id = "select-categories" ;
+    selectElement.name = "selectCategories";
+    selectElement.setAttribute("required", "");
+    selectWrapperElement.appendChild(selectElement);
+
+    let categoriesOptionsSelect = `<option value="">&nbsp;</option>` ;
 
     if (categories) {
         for(let i = 0; i < categories.length; i++) {
@@ -61,7 +81,7 @@ export async function createCategoriesOptionsForm() {
         }
     }
 
-    parentNode.innerHTML = categoriesOptionsSelect ;
+    selectElement.innerHTML = categoriesOptionsSelect ;
 }
 
 
@@ -82,13 +102,8 @@ export function activateBtnValidateNewProject() {
 }
 
 
-
-
-
-
 /**
- * 
- * 
+ * This function allows to hidden the <input> HTML tag to select a file. 
  */
 export function hiddenInputSelectImage() {
     const fileSelectButton = document.getElementById("js-file-select");
@@ -103,8 +118,8 @@ export function hiddenInputSelectImage() {
 
 
 /**
- * 
- * 
+ * This function displays a preview of the project image to add.
+ * @param {object} file The image file to display 
  */
 function showProjectImagePreview(file) {
     const reader = new FileReader() ;
@@ -128,10 +143,11 @@ function showProjectImagePreview(file) {
 
 
 /**
- * 
+ * This function allows to verify if the image file size to add is less than 4Mo.
+ * Otherwise, displays an error message.
  * 
  */
-function checkImageSize() {
+export function checkImageSize() {
     const inputFileElement = document.getElementById("js-input-file");
 
     inputFileElement.addEventListener("change", (event) => {
@@ -148,9 +164,7 @@ function checkImageSize() {
                 paragrapheElement.innerHTML = `La taille de l'image <strong>${file.name}</strong> dépasse la limite autorisée de 4Mo.</p>`;
                 paragrapheElement.classList.add("message-info", "error");
                 paragrapheElement.id = "js-error";
-                parentNode.insertBefore(paragrapheElement, nextSibling);
-
-                return false ;
+                parentNode.insertBefore(paragrapheElement, nextSibling);                
                 
             } else {            
                 const errorMessage = document.getElementById("js-error");
@@ -158,8 +172,7 @@ function checkImageSize() {
                     removeErrorMessage(errorMessage); 
                 }
                 
-                showProjectImagePreview(file);
-                return true ;
+                showProjectImagePreview(file);                
             }
         }   
     })
@@ -167,30 +180,63 @@ function checkImageSize() {
 
 
 /**
- * 
- * 
+ * This function allows to add a new project to the archietct's gallery. 
  */
-function checkProjectTitle() {
-    const inputProjectTitle = document.getElementById("input-title");
+export function addNewProject() {
+    const formSubmit = document.getElementById("js-form");    
 
-    inputProjectTitle.addEventListener("input", () => {
-        let projectTitle = inputProjectTitle.value ;
-        console.log(projectTitle);
-    
-        if(projectTitle.length >= 2) {
-            return true ;
+    formSubmit.addEventListener("submit", async (event) => {
+        event.preventDefault();
+           
+        const projectTitle = document.getElementById("input-title").value ;
+        const inputFileElement = document.getElementById("js-input-file");
+        const projectCategory = parseInt((document.getElementById("select-categories").value));        
+
+        if(projectTitle.trim().length > 1) {
+
+            const formData = new FormData() ;
+            formData.append("title", projectTitle);
+            formData.append("category", projectCategory);
+            formData.append("image", inputFileElement.files[0] );
+        
+            let responsePostNewProject = await postData("/works", formData) ;
+                
+            if(responsePostNewProject === 201) {
+                const works = await getData("/works");
+        
+                const message = `<p class="message-info succes">Le projet <strong>${projectTitle}</strong> a bien été ajouté.</p>`
+                showSuccessErrorMessage(message, "#modal-add-projects .modal-body");
+                
+                resetElements("#portfolio .gallery");
+                displayWorks(works, "#portfolio .gallery");
+        
+                resetAddProjectsForm();
+        
+                setTimeout(() => {
+                    const messageInfo = document.querySelector(".message-info");
+                    messageInfo.remove();
+                }, 3000);
+        
+            } else {
+                const message = '<p class="message-info error">Une erreur est survenue lors de l\'envoi des données. Veuillez rééssayer</p>' ;
+                showSuccessErrorMessage(message, "#modal-add-projects .modal-body");
+        
+                setTimeout(() => {
+                    const messageInfo = document.querySelector(".message-info");
+                    messageInfo.remove();
+                }, 3000);
+            }
+
         } else {
-            return false ;
-        }    
-    }) 
+            const message = '<p class="message-info error">Formulaire incomplet. Le titre du projet doit comporter au moins 2 caractères</p>' ;
+            showSuccessErrorMessage(message, "#modal-add-projects .modal-body");  
+
+            setTimeout(() => {
+                const messageInfo = document.querySelector(".message-info");
+                messageInfo.remove();
+            }, 4000);
+        }            
+    })
 }
 
 
-
-/**
- * 
- * 
- */
-export function isFormCompleted() {
-
-}

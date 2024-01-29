@@ -26,9 +26,6 @@ export async function displayWorksModal(parentNodeCSS) {
 
     parentNodeElement.innerHTML = html ;  
     
-    //script pour supprimer un élément
-    //const parentNode = document.querySelectorAll(".js-remove-work");
-    //console.log(parentNode);
     deleteWorksHandler();
     
 }
