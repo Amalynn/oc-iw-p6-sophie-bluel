@@ -58,7 +58,7 @@ inputFileElement.addEventListener("change", form.activateBtnValidateNewProject);
 inputTitle.addEventListener("input", form.activateBtnValidateNewProject);
 
 if (selectCategories) {
-    selectCategories.addEventListener("change", form.activateBtnValidateNewProject);
+   selectCategories.addEventListener("change", form.activateBtnValidateNewProject);
 }
 
 

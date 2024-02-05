@@ -73,7 +73,7 @@ export async function createCategoriesOptionsForm() {
     selectElement.setAttribute("required", "");
     selectWrapperElement.appendChild(selectElement);
 
-    let categoriesOptionsSelect = `<option value="">&nbsp;</option>` ;
+    let categoriesOptionsSelect = `<option value="0">&nbsp;</option>` ;
 
     if (categories) {
         for(let i = 0; i < categories.length; i++) {
@@ -94,7 +94,7 @@ export function activateBtnValidateNewProject() {
     const selectCategories = document.getElementById("select-categories");
     const btnValidateNewProject = document.getElementById("btnValidateNewProject");
 
-    if(projectImage && inputProjectTitle.value.length > 1 && selectCategories !== "") {
+    if(projectImage && inputProjectTitle.value.length >= 1 && selectCategories.value !== "0") {       
         btnValidateNewProject.disabled = false;
     } else {
         btnValidateNewProject.disabled = true;
@@ -192,7 +192,7 @@ export function addNewProject() {
         const inputFileElement = document.getElementById("js-input-file");
         const projectCategory = parseInt((document.getElementById("select-categories").value));        
 
-        if(projectTitle.trim().length > 1) {
+        if(projectTitle.trim().length > 2) {
 
             const formData = new FormData() ;
             formData.append("title", projectTitle);
@@ -228,7 +228,7 @@ export function addNewProject() {
             }
 
         } else {
-            const message = '<p class="message-info error">Formulaire incomplet. Le titre du projet doit comporter au moins 2 caractères</p>' ;
+            const message = '<p class="message-info error">Formulaire incomplet. Le titre du projet doit comporter plus de 2 caractères</p>' ;
             showSuccessErrorMessage(message, "#modal-add-projects .modal-body");  
 
             setTimeout(() => {

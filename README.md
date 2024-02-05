@@ -17,7 +17,7 @@ This is my solution for the project n°6 - OpenClassrooms - Web integrator train
     - [Links](#links)
 - [My process](#my-process)
 - [Skills evaluated](#skills-evaluated)
--[Information to launch the project](#information-to-launch-the-project)
+- [Information to launch the project](#information-to-launch-the-project)
 
 
 ## Oveview

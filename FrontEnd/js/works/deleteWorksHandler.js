@@ -6,8 +6,8 @@ import { showSuccessErrorMessage } from "./showSuccessErrorMessage.js";
 
 
 /**
- * 
- * 
+ * This function allows to remove a project
+ *  
  */
 export function deleteWorksHandler() {
     const btnDeleteWorksList = document.querySelectorAll("#modal-gallery .btn-delete");
