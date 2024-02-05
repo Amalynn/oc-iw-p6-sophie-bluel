@@ -31,8 +31,7 @@ export async function filterCategories() {
                 } else {
                     resetElements("#portfolio .gallery");
                     showInformationMessage(); 
-                }
-                
+                }                
 
             } else {
                 let worksFilterByCategory = works.filter((work) => {
@@ -47,8 +46,7 @@ export async function filterCategories() {
                 } else {
                     resetElements("#portfolio .gallery");
                     showInformationMessage();
-                }
-                
+                }                
             }           
         })
     })
